@@ -1,37 +1,37 @@
-const lessons = [
-    { text: "Урок 1: Что такое переменные? \n Переменные хранят данные. Например: let name = 'Иван';", answer: "let name = 'Иван';" },
-    { text: "Урок 2: Условные операторы \n if (условие) { код };", answer: "if (true) { console.log('Привет'); }" },
-    { text: "Урок 3: Циклы \n Цикл for позволяет повторять код.", answer: "for (let i = 0; i < 5; i++) { console.log(i); }" }
-];
-let currentLesson = localStorage.getItem("currentLesson") ? parseInt(localStorage.getItem("currentLesson")) : 0;
-
-function updateLesson() {
-    document.getElementById("lesson-content").innerText = lessons[currentLesson].text;
-    document.getElementById("progressBar").style.width = ((currentLesson + 1) / lessons.length) * 100 + "%";
-    localStorage.setItem("currentLesson", currentLesson);
-}
-
-function nextLesson() {
-    if (currentLesson < lessons.length - 1) {
-        currentLesson++;
-        updateLesson();
-    }
-}
-
-function prevLesson() {
-    if (currentLesson > 0) {
-        currentLesson--;
-        updateLesson();
-    }
-}
-
 function checkAnswer() {
-    const userCode = document.getElementById("userInput").value.trim();
-    if (userCode === lessons[currentLesson].answer) {
-        document.getElementById("result").innerText = "✅ Правильно!";
-    } else {
-        document.getElementById("result").innerText = "❌ Попробуйте еще раз.";
+    let userCode = document.getElementById("userInput").value;
+    let resultText = document.getElementById("result");
+
+    try {
+        if (userCode.includes('console.log("Hello, World!");')) {
+            resultText.innerHTML = "Правильно! 🎉";
+            resultText.style.color = "green";
+        } else {
+            resultText.innerHTML = "Ошибка! Попробуйте ещё раз.";
+            resultText.style.color = "red";
+        }
+    } catch (error) {
+        resultText.innerHTML = "Ошибка в коде!";
+        resultText.style.color = "red";
     }
 }
 
-updateLesson();
+function checkQuiz() {
+    let answers = document.getElementsByName("quiz");
+    let quizResult = document.getElementById("quiz-result");
+
+    for (let i = 0; i < answers.length; i++) {
+        if (answers[i].checked) {
+            if (answers[i].value === "console.log") {
+                quizResult.innerHTML = "Верно! ✅";
+                quizResult.style.color = "green";
+            } else {
+                quizResult.innerHTML = "Неверно. Попробуйте ещё раз.";
+                quizResult.style.color = "red";
+            }
+            return;
+        }
+    }
+    quizResult.innerHTML = "Выберите ответ!";
+    quizResult.style.color = "orange";
+}
