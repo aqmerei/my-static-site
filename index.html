@@ -13,13 +13,22 @@
             <div class="progress-bar" id="progressBar"></div>
         </div>
         <div id="lesson-content">
-            <h2>Урок 1: Основы JavaScript</h2>
-            <p>Напишите код, который выводит "Hello, World!" в консоль.</p>
+            <h2 id="lesson-title">Урок 1: Основы JavaScript</h2>
+            <p id="lesson-text">Напишите код, который выводит "Hello, World!" в консоль.</p>
         </div>
         <div class="task-container">
             <textarea id="userInput" placeholder="Напишите ваш код здесь..."></textarea>
             <button onclick="checkAnswer()">✅ Проверить</button>
             <p id="result"></p>
+        </div>
+        <div class="quiz-container">
+            <h3>Тест:</h3>
+            <p>Какой оператор используется для вывода в консоль?</p>
+            <input type="radio" name="quiz" value="alert"> alert<br>
+            <input type="radio" name="quiz" value="console.log"> console.log<br>
+            <input type="radio" name="quiz" value="print"> print<br>
+            <button onclick="checkQuiz()">Проверить тест</button>
+            <p id="quiz-result"></p>
         </div>
         <div class="buttons">
             <button class="nav-btn" onclick="prevLesson()">◀ Назад</button>
