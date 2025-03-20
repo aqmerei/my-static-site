@@ -10,39 +10,55 @@
     <div class="container">
         <h1>Мини-курс по программированию</h1>
 
+        <!-- Прогресс -->
         <div class="progress">
             <div class="progress-bar" id="progressBar"></div>
         </div>
 
+        <!-- Урок -->
         <div id="lesson-content">
-            <h2 id="lesson-title"></h2>
-            <p id="lesson-text"></p>
+            <h2 id="lesson-title">Урок 1: Основы JavaScript</h2>
+            <p id="lesson-text">Напишите код, который выводит "Hello, World!" в консоль.</p>
         </div>
 
+        <!-- Поле для кода -->
         <div class="task-container">
             <textarea id="userInput" placeholder="Напишите ваш код здесь..."></textarea>
-            <button id="checkButton">✅ Проверить</button>
+            <button onclick="checkAnswer()">✅ Проверить</button>
             <p id="result"></p>
         </div>
 
+        <!-- Тест -->
         <div class="quiz-container">
             <h3>Тест:</h3>
-            <p id="quiz-question"></p>
-            <div id="quiz-options"></div>
-            <button id="checkQuizButton">Проверить тест</button>
+            <p id="quiz-question">Какой оператор используется для вывода в консоль?</p>
+            
+            <input type="radio" name="quiz" value="alert"> alert<br>
+            <input type="radio" name="quiz" value="console.log"> console.log<br>
+            <input type="radio" name="quiz" value="print"> print<br>
+            
+            <button onclick="checkQuiz()">Проверить тест</button>
             <p id="quiz-result"></p>
         </div>
 
+        <!-- Навигация -->
         <div class="buttons">
-            <button id="prevLessonButton">◀ Назад</button>
-            <button id="nextLessonButton">Вперёд ▶</button>
+            <button class="nav-btn" onclick="prevLesson()">◀ Назад</button>
+            <button class="nav-btn" onclick="nextLesson()">Вперёд ▶</button>
         </div>
 
-        <footer>
-            <p>© 2025 Мини-курс по программированию | Все права защищены</p>
-        </footer>
+        <!-- Тестовая навигация -->
+        <div class="buttons">
+            <button onclick="prevQuiz()">◀ Назад (Тест)</button>
+            <button onclick="nextQuiz()">Вперёд (Тест) ▶</button>
+        </div>
     </div>
 
+    <footer>
+        <p>© 2025 Мини-курс по программированию | Все права защищены</p>
+    </footer>
+
+    <!-- Подключаем JavaScript -->
     <script src="js/script.js"></script>
 </body>
 </html>
