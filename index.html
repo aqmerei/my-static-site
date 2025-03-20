@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Курс по программированию</title>
+    <title>Мини-курс по программированию</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -12,18 +12,23 @@
         <div class="progress">
             <div class="progress-bar" id="progressBar"></div>
         </div>
-        <div id="lesson-content"></div>
+        <div id="lesson-content">
+            <h2>Урок 1: Основы JavaScript</h2>
+            <p>Напишите код, который выводит "Hello, World!" в консоль.</p>
+        </div>
         <div class="task-container">
             <textarea id="userInput" placeholder="Напишите ваш код здесь..."></textarea>
-            <button onclick="checkAnswer()">Проверить</button>
+            <button onclick="checkAnswer()">✅ Проверить</button>
             <p id="result"></p>
         </div>
         <div class="buttons">
-            <button onclick="prevLesson()">◀ Назад</button>
-            <button onclick="nextLesson()">Вперёд ▶</button>
+            <button class="nav-btn" onclick="prevLesson()">◀ Назад</button>
+            <button class="nav-btn" onclick="nextLesson()">Вперёд ▶</button>
         </div>
     </div>
+    <footer>
+        <p>© 2025 Мини-курс по программированию | Все права защищены</p>
+    </footer>
     <script src="js/script.js"></script>
 </body>
 </html>
-
