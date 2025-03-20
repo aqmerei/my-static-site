@@ -1,14 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Azure Site</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Курс по программированию</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <h1>Добро пожаловать на мой сайт!</h1>
-    <button onclick="showMessage()">Нажми меня</button>
-    <script src="script.js"></script>
+    <div class="container">
+        <h1>Мини-курс по программированию</h1>
+        <div class="progress">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <div id="lesson-content"></div>
+        <div class="task-container">
+            <textarea id="userInput" placeholder="Напишите ваш код здесь..."></textarea>
+            <button onclick="checkAnswer()">Проверить</button>
+            <p id="result"></p>
+        </div>
+        <div class="buttons">
+            <button onclick="prevLesson()">◀ Назад</button>
+            <button onclick="nextLesson()">Вперёд ▶</button>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
 </body>
 </html>
+
