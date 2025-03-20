@@ -1,15 +1,19 @@
-// Проверяем, загружается ли script.js
-console.log("Файл script.js загружен!");
+document.addEventListener("DOMContentLoaded", function () {
+    console.log("JavaScript загружен!");
 
-document.addEventListener("DOMContentLoaded", () => {
-    console.log("DOM загружен!");
+    // Привязка кнопок
+    document.getElementById("checkButton").addEventListener("click", checkAnswer);
+    document.getElementById("checkQuizButton").addEventListener("click", checkQuiz);
+    document.getElementById("prevLessonButton").addEventListener("click", prevLesson);
+    document.getElementById("nextLessonButton").addEventListener("click", nextLesson);
+
+    loadLesson();
+    loadQuiz();
 });
 
-// Уроки
 const lessons = [
     { title: "Урок 1: Основы JavaScript", text: "Напишите код, который выводит 'Hello, World!' в консоль." },
-    { title: "Урок 2: Переменные", text: "Создайте переменную и присвойте ей значение 'JavaScript'." },
-    { title: "Урок 3: Функции", text: "Создайте функцию, которая возвращает сумму двух чисел." }
+    { title: "Урок 2: Переменные", text: "Создайте переменную и присвойте ей значение 'JavaScript'." }
 ];
 
 let currentLesson = 0;
@@ -33,7 +37,6 @@ function nextLesson() {
     }
 }
 
-// Проверка кода пользователя
 function checkAnswer() {
     let userCode = document.getElementById("userInput").value.trim();
     let result = document.getElementById("result");
@@ -41,67 +44,55 @@ function checkAnswer() {
     if (currentLesson === 0 && userCode === 'console.log("Hello, World!");') {
         result.innerText = "✅ Правильно!";
         result.style.color = "green";
-    } else if (currentLesson === 1 && userCode.includes("let")) {
-        result.innerText = "✅ Правильно! Вы объявили переменную.";
-        result.style.color = "green";
-    } else if (currentLesson === 2 && userCode.includes("function")) {
-        result.innerText = "✅ Отлично! Вы создали функцию.";
-        result.style.color = "green";
     } else {
         result.innerText = "❌ Попробуйте ещё раз!";
         result.style.color = "red";
     }
 }
 
-// Тест
 const quizData = [
     {
         question: "Какой оператор используется для вывода в консоль?",
         options: ["alert", "console.log", "print"],
         correctAnswer: "console.log"
-    },
-    {
-        question: "Как объявить переменную в JavaScript?",
-        options: ["var", "let", "const"],
-        correctAnswer: "let"
-    },
-    {
-        question: "Какой метод используется для объединения массивов?",
-        options: ["concat()", "push()", "join()"],
-        correctAnswer: "concat()"
-    },
-    {
-        question: "Как создать функцию?",
-        options: ["function myFunc() {}", "let myFunc = {}", "def myFunc() {}"],
-        correctAnswer: "function myFunc() {}"
     }
 ];
 
-let currentQuiz = 0;
-
 function loadQuiz() {
-    let quiz = quizData[currentQuiz];
+    let quiz = quizData[0];
     document.getElementById("quiz-question").innerText = quiz.question;
 
-    let quizContainer = document.querySelector(".quiz-container");
-    quizContainer.innerHTML = `<h3>Тест:</h3><p id="quiz-question">${quiz.question}</p>`;
-
+    let quizOptions = document.getElementById("quiz-options");
+    quizOptions.innerHTML = "";
     quiz.options.forEach(option => {
         let radio = document.createElement("input");
         radio.type = "radio";
         radio.name = "quiz";
         radio.value = option;
-        quizContainer.appendChild(radio);
+        quizOptions.appendChild(radio);
 
         let label = document.createElement("label");
         label.innerText = " " + option;
-        quizContainer.appendChild(label);
-        quizContainer.appendChild(document.createElement("br"));
+        quizOptions.appendChild(label);
+        quizOptions.appendChild(document.createElement("br"));
     });
+}
 
-    let checkButton = document.createElement("button");
-    checkButton.innerText = "Проверить тест";
-    checkButton.onclick = checkQuiz;
-    quizContainer.appendChild(checkButton);
+function checkQuiz() {
+    let selected = document.querySelector('input[name="quiz"]:checked');
+    let result = document.getElementById("quiz-result");
 
-    let resultParagraph = document.cr
+    if (!selected) {
+        result.innerText = "❌ Выберите вариант ответа!";
+        result.style.color = "red";
+        return;
+    }
+
+    if (selected.value === quizData[0].correctAnswer) {
+        result.innerText = "✅ Верно!";
+        result.style.color = "green";
+    } else {
+        result.innerText = "❌ Неверно!";
+        result.style.color = "red";
+    }
+}
