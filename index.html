@@ -24,7 +24,7 @@
         <!-- Поле для кода -->
         <div class="task-container">
             <textarea id="userInput" placeholder="Напишите ваш код здесь..."></textarea>
-            <button onclick="checkAnswer()">✅ Проверить</button>
+            <button id="checkButton">✅ Проверить</button>
             <p id="result"></p>
         </div>
 
@@ -33,24 +33,26 @@
             <h3>Тест:</h3>
             <p id="quiz-question">Какой оператор используется для вывода в консоль?</p>
             
-            <input type="radio" name="quiz" value="alert"> alert<br>
-            <input type="radio" name="quiz" value="console.log"> console.log<br>
-            <input type="radio" name="quiz" value="print"> print<br>
-            
-            <button onclick="checkQuiz()">Проверить тест</button>
+            <div id="quiz-options">
+                <input type="radio" name="quiz" value="alert"> alert<br>
+                <input type="radio" name="quiz" value="console.log"> console.log<br>
+                <input type="radio" name="quiz" value="print"> print<br>
+            </div>
+
+            <button id="checkQuizButton">Проверить тест</button>
             <p id="quiz-result"></p>
         </div>
 
         <!-- Навигация -->
         <div class="buttons">
-            <button class="nav-btn" onclick="prevLesson()">◀ Назад</button>
-            <button class="nav-btn" onclick="nextLesson()">Вперёд ▶</button>
+            <button id="prevLessonButton">◀ Назад</button>
+            <button id="nextLessonButton">Вперёд ▶</button>
         </div>
 
         <!-- Тестовая навигация -->
         <div class="buttons">
-            <button onclick="prevQuiz()">◀ Назад (Тест)</button>
-            <button onclick="nextQuiz()">Вперёд (Тест) ▶</button>
+            <button id="prevQuizButton">◀ Назад (Тест)</button>
+            <button id="nextQuizButton">Вперёд (Тест) ▶</button>
         </div>
     </div>
 
@@ -58,7 +60,6 @@
         <p>© 2025 Мини-курс по программированию | Все права защищены</p>
     </footer>
 
-    <!-- Подключаем JavaScript -->
     <script src="js/script.js"></script>
 </body>
 </html>
