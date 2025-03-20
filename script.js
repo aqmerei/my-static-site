@@ -1,15 +1,20 @@
-// Проверяем, загружается ли script.js
-console.log("Файл script.js загружен!");
+document.addEventListener("DOMContentLoaded", function () {
+    console.log("Файл script.js загружен!");
 
-document.addEventListener("DOMContentLoaded", () => {
-    console.log("DOM загружен!");
+    // Привязка кнопок
+    document.getElementById("checkButton").addEventListener("click", checkAnswer);
+    document.getElementById("checkQuizButton").addEventListener("click", checkQuiz);
+    document.getElementById("prevLessonButton").addEventListener("click", prevLesson);
+    document.getElementById("nextLessonButton").addEventListener("click", nextLesson);
+    document.getElementById("prevQuizButton").addEventListener("click", prevQuiz);
+    document.getElementById("nextQuizButton").addEventListener("click", nextQuiz);
+
+    loadLesson();
 });
 
-// Уроки
 const lessons = [
     { title: "Урок 1: Основы JavaScript", text: "Напишите код, который выводит 'Hello, World!' в консоль." },
-    { title: "Урок 2: Переменные", text: "Создайте переменную и присвойте ей значение." },
-    { title: "Урок 3: Функции", text: "Создайте функцию, которая возвращает сумму двух чисел." }
+    { title: "Урок 2: Переменные", text: "Создайте переменную и присвойте ей значение 'JavaScript'." }
 ];
 
 let currentLesson = 0;
@@ -33,7 +38,6 @@ function nextLesson() {
     }
 }
 
-// Проверка кода пользователя
 function checkAnswer() {
     let userCode = document.getElementById("userInput").value.trim();
     let result = document.getElementById("result");
@@ -47,37 +51,14 @@ function checkAnswer() {
     }
 }
 
-// Тест
+// Данные тестов
 const quizData = [
     {
         question: "Какой оператор используется для вывода в консоль?",
+        options: ["alert", "console.log", "print"],
         correctAnswer: "console.log"
-    },
-    {
-        question: "Как объявить переменную?",
-        correctAnswer: "let"
     }
 ];
-
-let currentQuiz = 0;
-
-function loadQuiz() {
-    document.getElementById("quiz-question").innerText = quizData[currentQuiz].question;
-}
-
-function prevQuiz() {
-    if (currentQuiz > 0) {
-        currentQuiz--;
-        loadQuiz();
-    }
-}
-
-function nextQuiz() {
-    if (currentQuiz < quizData.length - 1) {
-        currentQuiz++;
-        loadQuiz();
-    }
-}
 
 function checkQuiz() {
     let selected = document.querySelector('input[name="quiz"]:checked');
@@ -89,7 +70,7 @@ function checkQuiz() {
         return;
     }
 
-    if (selected.value === quizData[currentQuiz].correctAnswer) {
+    if (selected.value === quizData[0].correctAnswer) {
         result.innerText = "✅ Верно!";
         result.style.color = "green";
     } else {
@@ -98,6 +79,10 @@ function checkQuiz() {
     }
 }
 
-// Загружаем первый урок и тест при старте
-loadLesson();
-loadQuiz();
+function prevQuiz() {
+    console.log("Назад (Тест)");
+}
+
+function nextQuiz() {
+    console.log("Вперёд (Тест)");
+}
