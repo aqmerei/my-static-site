@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    console.log("Файл script.js загружен!");
+    console.log("JavaScript загружен!");
 
     // Привязка кнопок
     document.getElementById("checkButton").addEventListener("click", checkAnswer);
